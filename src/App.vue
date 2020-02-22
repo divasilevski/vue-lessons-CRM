@@ -12,7 +12,6 @@ import MainLayout from "./layouts/MainLayout";
 export default {
   computed: {
     layout() {
-      this.$store.dispatch("logout");
       return (this.$route.meta.layout || "empty") + "-layout";
     }
   },

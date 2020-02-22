@@ -63,11 +63,12 @@
         <small
           class="helper-text invalid"
           v-if="$v.name.$dirty && !$v.name.required"
-        >Введите имя.</small>
+          >Введите имя.</small
+        >
       </div>
       <p>
         <label>
-          <input type="checkbox" v-model="agree"/>
+          <input type="checkbox" v-model="agree" />
           <span>С правилами согласен</span>
         </label>
       </p>
@@ -105,7 +106,7 @@ export default {
     agree: { checked: v => v }
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -115,8 +116,10 @@ export default {
         password: this.password,
         name: this.name
       };
-      console.log(formData);
-      this.$router.push("/");
+      try {
+        await this.$store.dispatch("register", formData);
+        this.$router.push("/");
+      } catch (error) {}
     }
   }
 };

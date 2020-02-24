@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{ "Menu_History" | localize }}</h3>
     </div>
 
     <div class="history-chart">
@@ -9,7 +9,9 @@
     </div>
 
     <Loader v-if="loading" />
-    <p class="center" v-else-if="!records.length">Записей пока нет!</p>
+    <p class="center" v-else-if="!records.length">
+      {{ "NoRecords" | localize }}
+    </p>
     <section v-else>
       <HistoryTable :records="items" />
 
@@ -28,6 +30,7 @@
 </template>
 
 <script>
+import localizeFilter from "../filters/localize.filter";
 import paginationMixin from "../mixins/pagination.mixin";
 import HistoryTable from "../components/HistoryTable";
 import { Pie } from "vue-chartjs";
@@ -56,7 +59,10 @@ export default {
             categoryName: categories.find(c => c.id === record.categoryId)
               .title,
             typeClass: record.type === "income" ? "green" : "red",
-            typeText: record.type === "income" ? "Доход" : "Расход"
+            typeText:
+              record.type === "income"
+                ? localizeFilter("Income")
+                : localizeFilter("Outcome")
           };
         })
       );
@@ -75,11 +81,11 @@ export default {
               }, 0);
             }),
             backgroundColor: [
-              'rgba(255, 99, 100, 0.2)',
-              'rgba(25, 99, 255, 0.2)',
-              'rgba(25, 99, 100, 0.2)',
-              'rgba(255, 255, 100, 0.2)',
-              'rgba(0, 99, 0, 0.2)'
+              "rgba(255, 99, 100, 0.2)",
+              "rgba(25, 99, 255, 0.2)",
+              "rgba(25, 99, 100, 0.2)",
+              "rgba(255, 255, 100, 0.2)",
+              "rgba(0, 99, 0, 0.2)"
             ]
           }
         ]

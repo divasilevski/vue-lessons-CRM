@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новая запись</h3>
+      <h3>{{"Menu_NewRecord" | localize}}</h3>
     </div>
 
     <Loader v-if="loading" />
 
     <p v-else-if="!categories.length" class="center">
-      Категорий нет.
-      <router-link to="/categories">Добавить новую категорию.</router-link>
+      {{"NoCategories" | localize}}
+      <router-link to="/categories">{{"AddNewCategory" | localize}}</router-link>
     </p>
 
     <form v-else class="form" @submit.prevent="submitHandler">
@@ -18,7 +18,7 @@
             cat.title
           }}</option>
         </select>
-        <label>Выберите категорию</label>
+        <label>{{"SelectCategory" | localize}}</label>
       </div>
 
       <p>
@@ -30,7 +30,7 @@
             type="radio"
             value="income"
           />
-          <span>Доход</span>
+          <span>{{"Income" | localize}}</span>
         </label>
       </p>
 
@@ -43,7 +43,7 @@
             type="radio"
             value="outcome"
           />
-          <span>Расход</span>
+          <span>{{"Outcome" | localize}}</span>
         </label>
       </p>
 
@@ -54,11 +54,11 @@
           v-model.number="amount"
           :class="{ invalid: $v.amount.$dirty && !$v.amount.minValue }"
         />
-        <label for="amount">Сумма</label>
+        <label for="amount">{{"Sum" | localize}}</label>
         <span
           v-if="$v.amount.$dirty && !$v.amount.minValue"
           class="helper-text invalid"
-          >Минимальная величина {{ $v.amount.$params.minValue.min }}</span
+          >{{"MinValue" | localize}} {{ $v.amount.$params.minValue.min }}</span
         >
       </div>
 
@@ -71,16 +71,16 @@
             invalid: $v.description.$dirty && !$v.description.required
           }"
         />
-        <label for="description">Описание</label>
+        <label for="description">{{"Description" | localize}}</label>
         <span
           v-if="$v.description.$dirty && !$v.description.required"
           class="helper-text invalid"
-          >Введите описание</span
+          >{{"InputDescription" | localize}}</span
         >
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Создать
+        {{"Create" | localize}}
         <i class="material-icons right">send</i>
       </button>
     </form>

@@ -4,6 +4,7 @@ import Paginate from 'vuejs-paginate'
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import localizeFilter from "./filters/localize.filter";
 import dateFilter from "./filters/date.filter";
 import currencyFilter from "./filters/currency.filter";
 import tooltipDirective from "./directives/tooltip.directive";
@@ -24,6 +25,7 @@ Vue.component("Loader", Loader);
 Vue.component('paginate', Paginate);
 Vue.directive("tooltip", tooltipDirective);
 Vue.filter("date", dateFilter);
+Vue.filter("localize", localizeFilter);
 Vue.filter("currency", currencyFilter);
 
 firebase.initializeApp({

@@ -32,6 +32,11 @@
 
 <script>
 export default {
+    metaInfo() {
+    return {
+      title: this.$title("Menu_NewRecord")
+    };
+  },
   name: "DetailRecord",
   data: () => ({
     record: null,

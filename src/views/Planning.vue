@@ -33,6 +33,11 @@ import localizeFilter from "../filters/localize.filter";
 import { mapGetters } from "vuex";
 import currencyFilter from "../filters/currency.filter"
 export default {
+    metaInfo() {
+    return {
+      title: this.$title("Menu_Planning")
+    };
+  },
   name: "planning",
   data: () => ({
     loading: true,

@@ -18,7 +18,7 @@
         <small
           class="helper-text invalid"
           v-if="$v.name.$dirty && !$v.name.required"
-          >{{"Messge_EnterName" | localize }}</small
+          >{{ "Messge_EnterName" | localize }}</small
         >
       </div>
 
@@ -31,7 +31,7 @@
         </label>
       </div>
       <button class="btn waves-effect waves-light" type="submit">
-        {{"Update" | localize}}
+        {{ "Update" | localize }}
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -39,9 +39,15 @@
 </template>
 
 <script>
+import localizeFilter from "../filters/localize.filter";
 import { required } from "vuelidate/lib/validators";
 import { mapGetters, mapActions } from "vuex";
 export default {
+  metaInfo() {
+    return {
+      title: this.$title("ProfileTitle")
+    };
+  },
   data: () => ({
     name: "",
     isRuLocale: true
